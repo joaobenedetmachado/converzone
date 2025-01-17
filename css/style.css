@@ -269,3 +269,121 @@ p {
 .search-results div:hover {
     background-color: #555;
 }
+
+/* Tablet Devices */
+@media screen and (max-width: 1024px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .conversion-list h3 {
+        font-size: 20px;
+    }
+
+    .conversion-list ul ul li {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 95%;
+        flex-direction: column;
+    }
+
+    .containerSection {
+        width: 100%;
+        padding: 40px;
+    }
+
+    .sideAreaSection {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .lineV {
+        display: none;
+    }
+
+    .mainInputSearch {
+        width: 100%;
+    }
+
+    .search-results {
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 768px) {
+    header {
+        height: 160px;
+    }
+
+    section {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logoArea a {
+        font-size: 1.2rem;
+    }
+
+    .containerSection {
+        padding: 20px;
+    }
+
+    .sideAreaSectionUl {
+        margin-top: 30px;
+        line-height: 50px;
+    }
+
+    .inputField, .selectField, .convertButton, .copyButton {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .welcome-section {
+        margin-bottom: 30px;
+    }
+
+    .conversion-list > ul > li {
+        margin-bottom: 20px;
+    }
+
+    .output {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .copyButton {
+        width: 100%;
+    }
+
+    .MarginArea {
+        margin-top: 20px;
+    }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+    .containerSection {
+        padding: 15px;
+    }
+
+    .sideAreaSection {
+        padding: 15px;
+    }
+
+    .logoArea a {
+        font-size: 1rem;
+    }
+
+    .inputField, .selectField, .convertButton, .copyButton {
+        margin-bottom: 15px;
+    }
+}
