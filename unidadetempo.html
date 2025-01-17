@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Converzone - O melhor conversor online para medidas de comprimento, peso, tempo e temperatura.">
+    <meta name="keywords" content="conversor, tempo, unidades, online, rápido">
+    <meta name="author" content="João Victor Benedet Machado">
+    <title>Converzone - Conversor de Tempo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logoArea">
+                <h1>Converzone!</h1>
+            </div>
+            <div class="textAreaDesc">
+                <p>Conversor de Diversos Dados Online!</p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="containerSection">
+            <div class="welcome-section">
+                <h1 class="m1">Conversor de Tempo ⏰</h1>
+                <div class="intro-text m1">
+                    <p>Transforme facilmente as unidades de tempo com o nosso conversor simples e rápido!</p>
+                </div>
+
+                <div class="conversion-section m1">
+                    <div class="MarginArea">
+                        <label for="inputTime" class="m1">Tempo</label>
+                        <select id="inputUnit" class="selectField">
+                            <option value="Segundos">Segundos (s)</option>
+                            <option value="Minutos">Minutos (min)</option>
+                            <option value="Horas">Horas (h)</option>
+                            <option value="Dias">Dias (d)</option>
+                            <option value="Meses">Meses (mo)</option>
+                            <option value="Anos">Anos (a)</option>
+                        </select>
+                        <input type="number" id="inputTime" class="inputField" placeholder="Digite o valor">
+
+                    </div>
+
+                    <div class="MarginArea">
+                        <span>para</span>
+
+                        <select id="outputUnit" class="selectField">
+                            <option value="Segundos">Segundos (s)</option>
+                            <option value="Minutos">Minutos (min)</option>
+                            <option value="Horas">Horas (h)</option>
+                            <option value="Dias">Dias (d)</option>
+                            <option value="Meses">Meses (mo)</option>
+                            <option value="Anos">Anos (a)</option>
+                        </select>
+
+                        <button onclick="convertTime()" class="convertButton">Converter</button>
+                    </div>
+
+                    <div class="MarginArea">
+                        
+                    <label for="outputTime" class="m3">Resultado</label>
+
+                    <div class="output">
+                        <input type="text" id="outputTime" class="inputField" disabled>
+                        <button onclick="copyToClipboard()" class="copyButton">📋</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lineV"></div>
+        <div class="sideAreaSection">
+            <ul class="sideAreaSectionUl">
+                <li><a href="./unidadescomprimento.html">Comprimento</a></li>
+                <li><a href="./unidadepeso.html">Pesos</a></li>
+                <li><a href="./unidadetempo.html">Tempo</a></li>
+                <li><a href="./temperatura.html">Temperatura</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        function convertTime() {
+            const inputTime = parseFloat(document.getElementById('inputTime').value);
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+            let result;
+
+            if (isNaN(inputTime)) {
+                alert("Por favor, insira um valor válido.");
+                return;
+            }
+
+            // Converta para a unidade desejada
+            if (inputUnit === "Segundos") {
+                if (outputUnit === "Minutos") {
+                    result = inputTime / 60;
+                } else if (outputUnit === "Horas") {
+                    result = inputTime / 3600;
+                } else if (outputUnit === "Dias") {
+                    result = inputTime / 86400;
+                } else if (outputUnit === "Meses") {
+                    result = inputTime / 2592000;
+                } else if (outputUnit === "Anos") {
+                    result = inputTime / 31536000;
+                } else {
+                    result = inputTime;
+                }
+            } else if (inputUnit === "Minutos") {
+                if (outputUnit === "Segundos") {
+                    result = inputTime * 60;
+                } else if (outputUnit === "Horas") {
+                    result = inputTime / 60;
+                } else if (outputUnit === "Dias") {
+                    result = inputTime / 1440;
+                } else if (outputUnit === "Meses") {
+                    result = inputTime / 43200;
+                } else if (outputUnit === "Anos") {
+                    result = inputTime / 525600;
+                } else {
+                    result = inputTime;
+                }
+            } else if (inputUnit === "Horas") {
+                if (outputUnit === "Segundos") {
+                    result = inputTime * 3600;
+                } else if (outputUnit === "Minutos") {
+                    result = inputTime * 60;
+                } else if (outputUnit === "Dias") {
+                    result = inputTime / 24;
+                } else if (outputUnit === "Meses") {
+                    result = inputTime / 730;
+                } else if (outputUnit === "Anos") {
+                    result = inputTime / 8760;
+                } else {
+                    result = inputTime;
+                }
+            } else if (inputUnit === "Dias") {
+                if (outputUnit === "Segundos") {
+                    result = inputTime * 86400;
+                } else if (outputUnit === "Minutos") {
+                    result = inputTime * 1440;
+                } else if (outputUnit === "Horas") {
+                    result = inputTime * 24;
+                } else if (outputUnit === "Meses") {
+                    result = inputTime / 30;
+                } else if (outputUnit === "Anos") {
+                    result = inputTime / 365;
+                } else {
+                    result = inputTime;
+                }
+            } else if (inputUnit === "Meses") {
+                if (outputUnit === "Segundos") {
+                    result = inputTime * 2592000;
+                } else if (outputUnit === "Minutos") {
+                    result = inputTime * 43200;
+                } else if (outputUnit === "Horas") {
+                    result = inputTime * 730;
+                } else if (outputUnit === "Dias") {
+                    result = inputTime * 30;
+                } else if (outputUnit === "Anos") {
+                    result = inputTime / 12;
+                } else {
+                    result = inputTime;
+                }
+            } else if (inputUnit === "Anos") {
+                if (outputUnit === "Segundos") {
+                    result = inputTime * 31536000;
+                } else if (outputUnit === "Minutos") {
+                    result = inputTime * 525600;
+                } else if (outputUnit === "Horas") {
+                    result = inputTime * 8760;
+                } else if (outputUnit === "Dias") {
+                    result = inputTime * 365;
+                } else if (outputUnit === "Meses") {
+                    result = inputTime * 12;
+                } else {
+                    result = inputTime;
+                }
+            }
+
+            document.getElementById('outputTime').value = result.toFixed(2);
+        }
+
+        function copyToClipboard() {
+            const outputTime = document.getElementById('outputTime');
+            outputTime.select();
+            document.execCommand('copy');
+            alert('Valor copiado: ' + outputTime.value);
+        }
+    </script>
+</body>
+  
+</html>

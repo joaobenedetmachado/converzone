@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Converzone - O melhor conversor online para medidas de comprimento, peso, tempo e temperatura.">
+    <meta name="keywords" content="conversor, peso, unidades, online, rápido">
+    <meta name="author" content="João Victor Benedet Machado">
+    <title>Converzone - Conversor de Peso</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logoArea">
+                <h1>Converzone!</h1>
+            </div>
+            <div class="textAreaDesc">
+                <p>Conversor de Diversos Dados Online!</p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="containerSection">
+            <div class="welcome-section">
+                <h1 class="m1">Conversor de Peso ⚖️</h1>
+                <div class="intro-text m1">
+                    <p>Transforme facilmente as unidades de peso com o nosso conversor simples e rápido!</p>
+                </div>
+
+                <div class="conversion-section m1">
+                    <div class="MarginArea">
+                        <label for="inputWeight" class="m1">Peso</label>
+                        <select id="inputUnit" class="selectField">
+                            <option value="Kilogram">Quilograma (kg)</option>
+                            <option value="Gram">Grama (g)</option>
+                            <option value="Pound">Libra (lb)</option>
+                            <option value="Ounce">Onça (oz)</option>
+                        </select>
+                        <input type="number" id="inputWeight" class="inputField" placeholder="Digite o valor">
+                    </div>
+
+                    <div class="MarginArea">
+                        <span>para</span>
+
+                        <select id="outputUnit" class="selectField">
+                            <option value="Gram">Grama (g)</option>
+                            <option value="Kilogram">Quilograma (kg)</option>
+                            <option value="Pound">Libra (lb)</option>
+                            <option value="Ounce">Onça (oz)</option>
+                        </select>
+
+                        <button onclick="convertWeight()" class="convertButton">Converter</button>
+                    </div>
+
+                    <div class="MarginArea">
+                        <label for="outputWeight" class="m3">Resultado</label>
+
+                        <div class="output">
+                            <input type="text" id="outputWeight" class="inputField" disabled>
+                            <button onclick="copyToClipboard()" class="copyButton">📋</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lineV"></div>
+        <div class="sideAreaSection">
+            <ul class="sideAreaSectionUl">
+                <li><a href="./unidadescomprimento.html">Comprimento</a></li>
+                <li><a href="./unidadepeso.html">Pesos</a></li>
+                <li><a href="./unidadetempo.html">Tempo</a></li>
+                <li><a href="./temperatura.html">Temperatura</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        function convertWeight() {
+            const inputWeight = parseFloat(document.getElementById('inputWeight').value);
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+            let result;
+
+            if (isNaN(inputWeight)) {
+                alert("Por favor, insira um valor válido.");
+                return;
+            }
+
+            // Converta para a unidade desejada
+            if (inputUnit === "Kilogram") {
+                if (outputUnit === "Gram") {
+                    result = inputWeight * 1000;
+                } else if (outputUnit === "Pound") {
+                    result = inputWeight * 2.20462;
+                } else if (outputUnit === "Ounce") {
+                    result = inputWeight * 35.274;
+                } else {
+                    result = inputWeight;
+                }
+            } else if (inputUnit === "Gram") {
+                if (outputUnit === "Kilogram") {
+                    result = inputWeight / 1000;
+                } else if (outputUnit === "Pound") {
+                    result = inputWeight / 453.592;
+                } else if (outputUnit === "Ounce") {
+                    result = inputWeight / 28.3495;
+                } else {
+                    result = inputWeight;
+                }
+            } else if (inputUnit === "Pound") {
+                if (outputUnit === "Kilogram") {
+                    result = inputWeight / 2.20462;
+                } else if (outputUnit === "Gram") {
+                    result = inputWeight * 453.592;
+                } else if (outputUnit === "Ounce") {
+                    result = inputWeight * 16;
+                } else {
+                    result = inputWeight;
+                }
+            } else if (inputUnit === "Ounce") {
+                if (outputUnit === "Kilogram") {
+                    result = inputWeight / 35.274;
+                } else if (outputUnit === "Gram") {
+                    result = inputWeight * 28.3495;
+                } else if (outputUnit === "Pound") {
+                    result = inputWeight / 16;
+                } else {
+                    result = inputWeight;
+                }
+            }
+
+            document.getElementById('outputWeight').value = result.toFixed(2);
+        }
+
+        function copyToClipboard() {
+            const outputWeight = document.getElementById('outputWeight');
+            outputWeight.select();
+            document.execCommand('copy');
+            alert('Valor copiado: ' + outputWeight.value);
+        }
+    </script>
+</body>
+
+</html>

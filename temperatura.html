@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Converzone - O melhor conversor online para medidas de comprimento, peso, tempo e temperatura.">
+    <meta name="keywords" content="conversor, temperatura, unidades, online, rápido">
+    <meta name="author" content="João Victor Benedet Machado">
+    <title>Converzone - Conversor de Temperatura</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logoArea">
+                <h1>Converzone!</h1>
+            </div>
+            <div class="textAreaDesc">
+                <p>Conversor de Diversos Dados Online!</p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="containerSection">
+            <div class="welcome-section">
+                <h1 class="m1">Conversor de Temperatura 🌡️</h1>
+                <div class="intro-text m1">
+                    <p>Transforme facilmente as unidades de temperatura com o nosso conversor simples e rápido!</p>
+                </div>
+
+                <div class="conversion-section m1">
+                    <div class="MarginArea">
+                        <label for="inputTemp" class="m1">Temperatura</label>
+                        <select id="inputUnit" class="selectField">
+                            <option value="Celsius">Celsius (°C)</option>
+                            <option value="Fahrenheit">Fahrenheit (°F)</option>
+                            <option value="Kelvin">Kelvin (K)</option>
+                        </select>
+                        <input type="number" id="inputTemp" class="inputField" placeholder="Digite o valor">
+
+                    </div>
+
+                    <div class="MarginArea">
+                        <span>para</span>
+
+                        <select id="outputUnit" class="selectField">
+                            <option value="Celsius">Celsius (°C)</option>
+                            <option value="Fahrenheit">Fahrenheit (°F)</option>
+                            <option value="Kelvin">Kelvin (K)</option>
+                        </select>
+
+                        <button onclick="convertTemperature()" class="convertButton">Converter</button>
+                    </div>
+
+                    <div class="MarginArea">
+                        
+                    <label for="outputTemp" class="m3">Resultado</label>
+
+                    <div class="output">
+                        <input type="text" id="outputTemp" class="inputField" disabled>
+                        <button onclick="copyToClipboard()" class="copyButton">📋</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="lineV"></div>
+        <div class="sideAreaSection">
+            <ul class="sideAreaSectionUl">
+                <li><a href="./unidadescomprimento.html">Comprimento</a></li>
+                <li><a href="./unidadepeso.html">Pesos</a></li>
+                <li><a href="./unidadetempo.html">Tempo</a></li>
+                <li><a href="./temperatura.html">Temperatura</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        function convertTemperature() {
+            const inputTemp = parseFloat(document.getElementById('inputTemp').value);
+            const inputUnit = document.getElementById('inputUnit').value;
+            const outputUnit = document.getElementById('outputUnit').value;
+            let result;
+
+            if (isNaN(inputTemp)) {
+                alert("Por favor, insira um valor válido.");
+                return;
+            }
+
+            // Converta para a unidade desejada
+            if (inputUnit === "Celsius") {
+                if (outputUnit === "Fahrenheit") {
+                    result = (inputTemp * 9/5) + 32;
+                } else if (outputUnit === "Kelvin") {
+                    result = inputTemp + 273.15;
+                } else {
+                    result = inputTemp;
+                }
+            } else if (inputUnit === "Fahrenheit") {
+                if (outputUnit === "Celsius") {
+                    result = (inputTemp - 32) * 5/9;
+                } else if (outputUnit === "Kelvin") {
+                    result = ((inputTemp - 32) * 5/9) + 273.15;
+                } else {
+                    result = inputTemp;
+                }
+            } else if (inputUnit === "Kelvin") {
+                if (outputUnit === "Celsius") {
+                    result = inputTemp - 273.15;
+                } else if (outputUnit === "Fahrenheit") {
+                    result = ((inputTemp - 273.15) * 9/5) + 32;
+                } else {
+                    result = inputTemp;
+                }
+            }
+
+            document.getElementById('outputTemp').value = result.toFixed(2);
+        }
+
+        function copyToClipboard() {
+            const outputTemp = document.getElementById('outputTemp');
+            outputTemp.select();
+            document.execCommand('copy');
+            alert('Valor copiado: ' + outputTemp.value);
+        }
+    </script>
+</body>
+
+</html>
