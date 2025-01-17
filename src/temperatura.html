@@ -9,14 +9,28 @@
     <meta name="keywords" content="conversor, temperatura, unidades, online, rápido">
     <meta name="author" content="João Victor Benedet Machado">
     <title>Converzone - Conversor de Temperatura</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
     <header>
         <div class="container">
             <div class="logoArea">
-                <h1>Converzone!</h1>
+                <a href="../home.html">
+                    <h1>Converzone!</h1>
+                </a>
+            </div>
+            <div class="futureInputArea">
+                <div class="input-group mainInputSearch mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M23.832 19.641l-6.821-6.821c2.834-5.878-1.45-12.82-8.065-12.82-4.932 0-8.946 4.014-8.946 8.947 0 6.508 6.739 10.798 12.601 8.166l6.879 6.879c1.957.164 4.52-2.326 4.352-4.351zm-14.886-4.721c-3.293 0-5.973-2.68-5.973-5.973s2.68-5.973 5.973-5.973c3.294 0 5.974 2.68 5.974 5.973s-2.68 5.973-5.974 5.973z"/>
+                        </svg>
+                    </span>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar conversores" aria-label="Pesquisar conversores" aria-describedby="basic-addon1">
+                </div>
+                <div id="searchResults" class="search-results"></div>
             </div>
             <div class="textAreaDesc">
                 <p>Conversor de Diversos Dados Online!</p>
@@ -77,8 +91,42 @@
             </ul>
         </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+            let query = this.value.toLowerCase();  
+            let resultsDiv = document.getElementById('searchResults');
+            
+            let items = [
+                { name: "Conversor de Temperatura", link: "./temperatura.html" },
+                { name: "Conversor de Peso", link: "./unidadepeso.html" },
+                { name: "Conversor de Distância", link: "./unidadescomprimento;html" },
+                { name: "Conversor de Tempo", link: "./unidadetempo.html" }];
+    
+            let filteredItems = items.filter(item => item.name.toLowerCase().includes(query));
+    
+            resultsDiv.innerHTML = ''; 
+    
+            if (filteredItems.length > 0 && query !== '') {
+                resultsDiv.style.display = 'block'; 
+    
+                filteredItems.forEach(item => {
+                    let resultItem = document.createElement('a'); 
+                    resultItem.textContent = item.name;
+                    resultItem.href = item.link;  
+                    resultItem.target = '_blank';  
+                    resultItem.classList.add('search-item');  
+                    resultItem.addEventListener('click', function() {
+                        document.getElementById('searchInput').value = item.name;  
+                        resultsDiv.style.display = 'none'; 
+                    });
+    
+                    resultsDiv.appendChild(resultItem);
+                });
+            } else {
+                resultsDiv.style.display = 'none';  
+            }
+        });
         function convertTemperature() {
             const inputTemp = parseFloat(document.getElementById('inputTemp').value);
             const inputUnit = document.getElementById('inputUnit').value;
@@ -90,7 +138,6 @@
                 return;
             }
 
-            // Converta para a unidade desejada
             if (inputUnit === "Celsius") {
                 if (outputUnit === "Fahrenheit") {
                     result = (inputTemp * 9/5) + 32;
