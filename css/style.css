@@ -224,6 +224,11 @@ p {
   .lineV {
     display: none;
   }
+  
+  header {
+    gap: 0;
+    margin: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -247,9 +252,24 @@ p {
   .copyButton {
     width: 100%;
   }
+  
+  header .container{
+    gap: 0;
+    padding: 0;
+  }
+  .FutureInputArea, .searchInput {
+    padding: 0;
+    gap: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {
+
+  header {
+    gap: 0;
+    margin: none;
+  }
+  
   .container {
     width: 95%;
   }
